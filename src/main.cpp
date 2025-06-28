@@ -36,7 +36,7 @@ int main() {
     }
 
     curl_easy_setopt(onionTest, CURLOPT_PROXY, "socks5h://127.0.0.1:9150");
-    curl_easy_setopt(onionTest, CURLOPT_URL, "http://msdtiwq25tbitzsjdumrvgmc2n5a3osdxrrstmsktri2l2cx3wototad.onion/chatapi.php?action=fetch");
+    curl_easy_setopt(onionTest, CURLOPT_URL, "http://onionurl/api.php?action=fetch");
     std::string response;
     curl_easy_setopt(onionTest, CURLOPT_WRITEFUNCTION, WriteCallback);
     curl_easy_setopt(onionTest, CURLOPT_WRITEDATA, &response);
@@ -61,7 +61,7 @@ int main() {
     std::getline(std::cin, username);
     {
         std::string postFields = "name=" + username;
-        curl_easy_setopt(curlSend, CURLOPT_URL, "http://msdtiwq25tbitzsjdumrvgmc2n5a3osdxrrstmsktri2l2cx3wototad.onion/chatapi.php?action=register");
+        curl_easy_setopt(curlSend, CURLOPT_URL, "http://onionurl/api.php?action=register");
         curl_easy_setopt(curlSend, CURLOPT_POSTFIELDS, postFields.c_str());
 
         CURLcode result = curl_easy_perform(curlSend);
@@ -78,7 +78,7 @@ int main() {
             std::string response;
             response.clear();
 
-            curl_easy_setopt(curlFetch, CURLOPT_URL, "http://msdtiwq25tbitzsjdumrvgmc2n5a3osdxrrstmsktri2l2cx3wototad.onion/chatapi.php?action=fetch");
+            curl_easy_setopt(curlFetch, CURLOPT_URL, "http://onionurl/api.php?action=fetch");
             curl_easy_setopt(curlFetch, CURLOPT_HTTPGET, 1L);
             curl_easy_setopt(curlFetch, CURLOPT_WRITEFUNCTION, WriteCallback);
             curl_easy_setopt(curlFetch, CURLOPT_WRITEDATA, &response);
@@ -123,7 +123,7 @@ int main() {
         if (message.empty()) continue;
 
         std::string postFields = "name=" + username + "&message=" + message;
-        curl_easy_setopt(curlSend, CURLOPT_URL, "http://msdtiwq25tbitzsjdumrvgmc2n5a3osdxrrstmsktri2l2cx3wototad.onion/chatapi.php?action=send");
+        curl_easy_setopt(curlSend, CURLOPT_URL, "http://onionurl/api.php?action=send");
         curl_easy_setopt(curlSend, CURLOPT_POSTFIELDS, postFields.c_str());
 
         CURLcode result = curl_easy_perform(curlSend);
